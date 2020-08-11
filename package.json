@@ -1,0 +1,23 @@
+{
+  "name": "markov",
+  "version": "1.0.0",
+  "description": "",
+  "main": "markov.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mshweta-7829/markov.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mshweta-7829/markov/issues"
+  },
+  "homepage": "https://github.com/mshweta-7829/markov#readme",
+  "dependencies": {
+    "axios": "^0.19.2"
+  }
+}

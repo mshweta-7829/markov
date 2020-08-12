@@ -6,7 +6,6 @@ class MarkovMachine {
   /** build markov machine; read in text.*/
 
   constructor(text) {
-    console.log(text);
     let words = text.split(/[ \r\n]+/);
     this.wordsChain = this.makeChains(words)
   }

@@ -33,7 +33,7 @@ async function getContents(type, path) {
 		} else if (type === "url") {
 			contents = await Axios({ "url": path });
 		}
-		console.log("file contents", contents);
+		// console.log("file contents", contents);
 		return contents;
 	} catch (err) {
 		console.error(`${path} not found: ${err}`);
@@ -42,8 +42,9 @@ async function getContents(type, path) {
 }
 
 async function generateText() {
-	let mm = new MarkovMachine(getContents(process.argv[2], process.argv[3]));
-	mm.getText();
+	let mm = new MarkovMachine(await getContents(process.argv[2], process.argv[3]));
+	 mm.getText();
 }
 
-generateText();
+let result =  await generateText();
+console.log("This is the result", result);

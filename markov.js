@@ -6,6 +6,7 @@ class MarkovMachine {
   /** build markov machine; read in text.*/
 
   constructor(text) {
+    console.log(text);
     let words = text.split(/[ \r\n]+/);
     this.wordsChain = this.makeChains(words)
   }
@@ -16,21 +17,15 @@ class MarkovMachine {
    *  {"the": ["cat", "hat"], "cat": ["in"], "in": ["the"], "hat": [null]} */
 
   makeChains(words) {
-
-    let wordsChain = {}
+    // Consider moving out the last word if conditions or figure out the logic behind 
+    let wordsChain = {};
     for (let i = 0; i < words.length; i++) {
-      if (i === words.length - 1) {
-        if (wordsChain[words[i]] === undefined) {
-          wordsChain[words[i]] = [null]
-        } else {
-          break;
-        }
-      }
-      else if (wordsChain[words[i]] === undefined) {
-        wordsChain[words[i]] = [words[i + 1]]
+      
+      if (wordsChain[words[i]] === undefined) {
+        wordsChain[words[i]] = [words[i + 1] || null]
       }
       else {
-        wordsChain[words[i]].push(words[i + 1])
+        wordsChain[words[i]].push(words[i + 1] || null)
       }
     }
     return wordsChain
@@ -46,10 +41,12 @@ class MarkovMachine {
 
     let markovText = "";
     let currWord = Object.keys(this.wordsChain)[0]
+
     while (numWords > 0) {
       markovText += currWord + " "
       let randomIndex = Math.floor(Math.random() * this.wordsChain[currWord].length)
       let nextWord = this.wordsChain[currWord][randomIndex]
+
       if (nextWord === null) {
         break;
       } else {
@@ -60,6 +57,8 @@ class MarkovMachine {
     return markovText.trim()
   }
 }
+
+// write a function that will return a random item from an array.
 
 module.exports = {
   MarkovMachine
